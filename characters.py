@@ -1,12 +1,13 @@
 import random
 class character :
-    def __init__(self,name,sexe,health,strength,number_of_health_potion):
-        self.name = name
+    def __init__(self,name,sexe,health,strength,number_of_health_potion,side):
+        self.name = name.capitalize()
         self.sexe = sexe
         self.health = health
         self.strength = strength
         self.number_of_health_potion  = number_of_health_potion
         self.is_alive = is_alive
+        self.side = side
         if self.sexe == "M":
             self.sexe = "il"
         elif self.sexe == "F":
@@ -19,11 +20,16 @@ def is_alive(character) :
         character.is_alive = False
         return character.is_alive
 
+def Introduction(character) :
+    print("Dans le coin "+str(character.side)+" du ring nous avons :")
+    print(character.name + " avec une force de frappe maxiamle de " + str(character.strength) + " points.")
+    print("Et une santé s'elevant a " + str(character.health) + " points\n")
+
 
 def welcome_message(character) :
-    if character.sexe == "M":
+    if character.sexe == "M"  or character.sexe == "m" :
         print("bienvenu sir "+character.name)
-    elif character.sexe == "F" :
+    elif character.sexe == "F" or character.sexe == "f" :
         print("bienvenu dame "+character.name)
 def healing(character):
     if character.number_of_health_potion > 0:
