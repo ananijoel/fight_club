@@ -1,4 +1,3 @@
-import random
 import characters
 import getpass
 
@@ -15,7 +14,7 @@ sith_sexe  = input("quel est votre sexe ?(M/F)\nreponse : ")
 sith = characters.character(ith_user_name,sith_sexe,100, 5,15, 0,"droit",1)
 characters.welcome_message(sith)
 
-print("\nMedames et messieur bienvenus dans l'arene du dual fight. Ce soir : \n".upper())
+print("\nMedames et messieur bienvenus dans l'arene du fight club . Ce soir : \n".upper())
 characters.Introduction(jedi)
 characters.Introduction(sith)
 
