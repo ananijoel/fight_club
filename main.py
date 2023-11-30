@@ -2,7 +2,7 @@ import random
 import characters
 import getpass
 
-print("*** Bienvenu dans le jeu dual fight ***\n")
+print("*** Bienvenu dans le jeu fight club ***\n")
 
 jedi_user_name = input("veuillez entrer le nom de votre avatar\nreponse : ")
 jedi_sexe  = input("quel est votre sexe ?(M/F)\nreponse : ")
