@@ -1,21 +1,10 @@
 import random
 from faker import Faker
 fake = Faker()
-
 from datetime import datetime
 
-# Obtenir la date et l'heure actuelles
-date_actuelle = datetime.now()
-
-# Formater la date comme une chaîne de caractères
-date_formatee = date_actuelle.strftime("%Y-%m-%d %H:%M:%S")
-
-
 sexe = ["M","F"]
-side = ["gauche","droite"]
-
-
- #TODO
+side = ["gauche","droit"]
 
 class character :
     def __init__(self, name, sexe, health, min_strength,max_strength, side, endurance, choice=None):
@@ -28,16 +17,10 @@ class character :
         self.side = side
         self.endurance = endurance
         self.choice = choice
-        """if self.sexe == "M":
-            self.sexe = "il"
-        elif self.sexe == "F":
-            self.sexe = "elle" """
-"""        if self.sexe == "N":
-            self.health = 0
-            print(self.name+"N'est ni homme ni femme donc on l'a tué ")"""
-
 
 def fights_history_register(character,character_score,chracter_2_score,character_2):
+    date_actuelle = datetime.now()
+    date_formatee = date_actuelle.strftime("%Y-%m-%d %H:%M:%S")
     with open('fights_history.txt', 'a') as fights_history:
         fights_history.write("--------------------------------------------------------\n")
         fights_history.write(f'score final de la partie du : {date_formatee}\n')
@@ -46,6 +29,18 @@ def fights_history_register(character,character_score,chracter_2_score,character
         fights_history.write(str(character_score) + ":" + str(chracter_2_score) + " ")
         fights_history.write(character_2.name + " \n")
         fights_history.write("--------------------------------------------------------\n")
+
+def player_avatar_data_init(character):
+    character.name = input("Quel est votre nom ?\nreponse : ")
+    character.sexe = input("ca peut paraitre indiscret " + character.name + " mais quel est votre sexe ? On ne sait plus trop qui est qui aujourd'hui\nreponse (M:masulin/F:feminin): ").capitalize()
+    while character.sexe != "M" and character.sexe != "F":
+        character.sexe = input(character.name + " CHOISIS ENTRE UN HOUMME OU UNE FEMME. (M/m pour masculin  ou F/f pour feminin.)\nquel est votre sexe ?(M/F)\nreponse : ").capitalize()
+    character.health = 50
+    character.min_strength = 5
+    character.max_strength = 15
+    character.side = random.choice([side[0], side[1]])
+    character.endurance = 8
+
 def object_hasard_config(object):
     object.name = fake.name()
     object.sexe = random.choice([sexe[0], sexe[1]])
@@ -60,12 +55,13 @@ def drug_choice(character) :
     drug_choice = input("0.Rien du tout \n1.Gain de santé \n2.Gain de vitalité. \n Que choisissez vous  "+character.name+" ? : ")
     while drug_choice !="0" and drug_choice !="1" and drug_choice !="2" :
         drug_choice = input("0.Rien du tout \n1.Gain de santé \n2.Gain de vitalité. \n Que choisissez vous  " + character.name + " ? : ")
-        if drug_choice =="1" :
-            character.health = character.health + character.health/10
-        elif drug_choice == "2":
-            character.endurance = character.endurance + character.endurance/10
-        elif drug_choice == "0":
-            print()
+    if drug_choice =="1" :
+        character.health = character.health + character.health/10
+    elif drug_choice == "2":
+        character.endurance = character.endurance + character.endurance/10
+    elif drug_choice == "0":
+        print()
+
 
 def is_alive(character) :
     if character.health > 0:
@@ -98,15 +94,7 @@ def welcome_message(character) :
         print("bienvenu sir "+character.name)
     elif character.sexe == "F" or character.sexe == "f" :
         print("bienvenu dame "+character.name)
-"""def healing(character):
-    if character.number_of_health_potion > 0:
-        potion_effect = random.randrange(1,15)
-        character.health = character.health + potion_effect
-        character.number_of_health_potion = character.number_of_health_potion -1
-        print(str(character.name)+"a utilisé une potion. Il a gagné "+str(potion_effect)+" de point de vie. Il a maintenant "+str(character.health)+" de point de vie ")
-    else:
-        print("vous n'avez plus de potion")
-"""
+
 def strike(character,character_2):
     endurance_state(character)
     if character.endurance >= 0 :
