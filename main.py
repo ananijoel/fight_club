@@ -15,7 +15,7 @@ characters.player_avatar_data_init(sith)
 big_prints .rules_of_the_game()
 
 print("Pour pimenter le combat, nous avons decider de vous donner un choix.")
-print("Un choix entre deux drogues. la premiere augmente votre santé de 10% et l'autre votre endurance de 10% aussi")
+print("Un choix entre deux drogues. la premiere augmente votre santé de 10% et l'autre votre endurance de 20% aussi")
 characters.drug_choice(jedi)
 characters.drug_choice(sith)
 

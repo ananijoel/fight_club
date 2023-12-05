@@ -35,11 +35,11 @@ def player_avatar_data_init(character):
     character.sexe = input("ca peut paraitre indiscret " + character.name + " mais quel est votre sexe ? On ne sait plus trop qui est qui aujourd'hui\nreponse (M:masulin/F:feminin): ").capitalize()
     while character.sexe != "M" and character.sexe != "F":
         character.sexe = input(character.name + " CHOISIS ENTRE UN HOUMME OU UNE FEMME. (M/m pour masculin  ou F/f pour feminin.)\nquel est votre sexe ?(M/F)\nreponse : ").capitalize()
-    character.health = 50
+    character.health = 30
     character.min_strength = 5
     character.max_strength = 15
     character.side = random.choice([side[0], side[1]])
-    character.endurance = 8
+    character.endurance = 4
 
 def object_hasard_config(object):
     object.name = fake.name()
@@ -52,13 +52,13 @@ def object_hasard_config(object):
     object.choice = random.randint(0, 2)
 
 def drug_choice(character) :
-    drug_choice = input("0.Rien du tout \n1.Gain de santé \n2.Gain de vitalité. \n Que choisissez vous  "+character.name+" ? : ")
+    drug_choice = input("0.Rien du tout \n1.Gain d'endurance \n2.Gain de vitalité. \n Que choisissez vous  "+character.name+" ? : ")
     while drug_choice !="0" and drug_choice !="1" and drug_choice !="2" :
-        drug_choice = input("0.Rien du tout \n1.Gain de santé \n2.Gain de vitalité. \n Que choisissez vous  " + character.name + " ? : ")
-    if drug_choice =="1" :
-        character.health = character.health + character.health/10
-    elif drug_choice == "2":
-        character.endurance = character.endurance + character.endurance/10
+        drug_choice = input("0.Rien du tout \n1.Gain d'enrance \n2.Gain de vitalité. \n Que choisissez vous  " + character.name + " ? : ")
+    if drug_choice =="2" :
+        character.health = character.health + int(character.health/10)
+    elif drug_choice == "1":
+        character.endurance = character.endurance + int(character.endurance/20)+1
     elif drug_choice == "0":
         print()
 
@@ -97,7 +97,7 @@ def welcome_message(character) :
 
 def strike(character,character_2):
     endurance_state(character)
-    if character.endurance >= 0 :
+    if character.endurance > 0 :
         damage = random.randrange(character.min_strength, character.max_strength)
         character_2.health = character_2.health - damage
         print("----------------")
@@ -110,7 +110,7 @@ def strike(character,character_2):
 
 def defense (character,character_2) :
     endurance_state(character)
-    if character.endurance >= 0 :
+    if character.endurance > 0 :
         print("----------------")
         print(str(character.name) + " a choisi la defense.")
         print(str(character.name) + " a perdu 0.5 de son endurance. Maintenant, son endurance est de " + str(character.endurance))

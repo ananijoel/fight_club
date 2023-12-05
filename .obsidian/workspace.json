@@ -148,16 +148,16 @@
   },
   "active": "9c32d9cd56f09b21",
   "lastOpenFiles": [
-    "main.py~",
     "characters.py~",
+    "__pycache__/characters.cpython-310.pyc.139655646108032",
+    "main.py~",
+    "__pycache__/characters.cpython-310.pyc.139728528923008",
+    "fights_history.txt~",
     "big_prints.py~",
     "__pycache__/big_prints.cpython-310.pyc",
     "__pycache__/characters.cpython-310.pyc.139891204200832",
     "big_prints.py",
     "intro.py~",
-    "__pycache__/characters.cpython-310.pyc.140559793822224",
-    "__pycache__/intro.cpython-310.pyc",
-    "intro.py",
-    "__pycache__/characters.cpython-310.pyc.139769576004112"
+    "__pycache__/characters.cpython-310.pyc.140559793822224"
   ]
 }
