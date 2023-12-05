@@ -2,6 +2,15 @@ import random
 from faker import Faker
 fake = Faker()
 
+from datetime import datetime
+
+# Obtenir la date et l'heure actuelles
+date_actuelle = datetime.now()
+
+# Formater la date comme une chaîne de caractères
+date_formatee = date_actuelle.strftime("%Y-%m-%d %H:%M:%S")
+
+
 sexe = ["M","F"]
 side = ["gauche","droite"]
 
@@ -26,6 +35,17 @@ class character :
 """        if self.sexe == "N":
             self.health = 0
             print(self.name+"N'est ni homme ni femme donc on l'a tué ")"""
+
+
+def fights_history_register(character,character_score,chracter_2_score,character_2):
+    with open('fights_history.txt', 'a') as fights_history:
+        fights_history.write("--------------------------------------------------------\n")
+        fights_history.write(f'score final de la partie du : {date_formatee}\n')
+        #fights_history.write(character.name+" "+str(character_score)+":"+str(chracter_2_score)+" "+str(chracter_2.name))
+        fights_history.write(character.name+" ")
+        fights_history.write(str(character_score) + ":" + str(chracter_2_score) + " ")
+        fights_history.write(character_2.name + " \n")
+        fights_history.write("--------------------------------------------------------\n")
 def object_hasard_config(object):
     object.name = fake.name()
     object.sexe = random.choice([sexe[0], sexe[1]])
@@ -151,6 +171,7 @@ def health_printer(character,character_2):
         print("Félicitations à " + character.name + " pour cette victoire dans l'arène du Fight Club!")
         print("*************************************************************************")
         print("*************************************************************************")
+        fights_history_register(character,1, 0,character_2)
 
 
     elif  not is_alive(character) and is_alive(character_2) :
@@ -164,6 +185,7 @@ def health_printer(character,character_2):
         print("Félicitations à " + character_2.name + " pour cette victoire dans l'arène du Fight Club!")
         print("*************************************************************************")
         print("*************************************************************************")
+        fights_history_register(character,0,1,character_2)
 
     elif not is_alive(character) and  not is_alive(character_2):
         print("\n")
@@ -175,3 +197,4 @@ def health_printer(character,character_2):
         print("Match null")
         print("*************************************************************************")
         print("*************************************************************************")
+        fights_history_register(character,1, 1,character_2)
