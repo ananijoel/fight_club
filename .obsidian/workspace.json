@@ -146,13 +146,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "9c32d9cd56f09b21",
+  "active": "64fad620255a914d",
   "lastOpenFiles": [
     "characters.py~",
-    "__pycache__/characters.cpython-310.pyc.139655646108032",
     "main.py~",
-    "__pycache__/characters.cpython-310.pyc.139728528923008",
     "fights_history.txt~",
+    "__pycache__/characters.cpython-310.pyc.139655646108032",
+    "__pycache__/characters.cpython-310.pyc.139728528923008",
     "big_prints.py~",
     "__pycache__/big_prints.cpython-310.pyc",
     "__pycache__/characters.cpython-310.pyc.139891204200832",

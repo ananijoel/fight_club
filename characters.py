@@ -7,7 +7,7 @@ sexe = ["M","F"]
 side = ["gauche","droit"]
 
 class character :
-    def __init__(self, name, sexe, health, min_strength,max_strength, side, endurance, choice=None):
+    def __init__(self, name, sexe, health, min_strength,max_strength, side, endurance,score, choice=None):
         self.name = name.capitalize()
         self.sexe = sexe.capitalize()
         self.health = health
@@ -17,18 +17,22 @@ class character :
         self.side = side
         self.endurance = endurance
         self.choice = choice
+        self.score = score
 
-def fights_history_register(character,character_score,chracter_2_score,character_2):
+def fights_history_register(character,character_2,i):
     date_actuelle = datetime.now()
     date_formatee = date_actuelle.strftime("%Y-%m-%d %H:%M:%S")
     with open('fights_history.txt', 'a') as fights_history:
+        fights_history.write("||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n")
         fights_history.write("--------------------------------------------------------\n")
         fights_history.write(f'score final de la partie du : {date_formatee}\n')
         #fights_history.write(character.name+" "+str(character_score)+":"+str(chracter_2_score)+" "+str(chracter_2.name))
         fights_history.write(character.name+" ")
-        fights_history.write(str(character_score) + ":" + str(chracter_2_score) + " ")
+        fights_history.write(str(character.score) + ":" + str(character_2.score) + " ")
         fights_history.write(character_2.name + " \n")
+        fights_history.write("la partie a durée "+str(i)+" tours \n")
         fights_history.write("--------------------------------------------------------\n")
+        fights_history.write("||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n")
 
 def player_avatar_data_init(character):
     character.name = input("Quel est votre nom ?\nreponse : ")
@@ -40,6 +44,7 @@ def player_avatar_data_init(character):
     character.max_strength = 15
     character.side = random.choice([side[0], side[1]])
     character.endurance = 4
+    character.score = 0
 
 def object_hasard_config(object):
     object.name = fake.name()
@@ -50,6 +55,7 @@ def object_hasard_config(object):
     object.side = random.choice([side[0], side[1]])
     object.endurance = random.randint(8, 12)
     object.choice = random.randint(0, 2)
+    object.score = 0
 
 def drug_choice(character) :
     drug_choice = input("0.Rien du tout \n1.Gain d'endurance \n2.Gain de vitalité. \n Que choisissez vous  "+character.name+" ? : ")
@@ -159,7 +165,8 @@ def health_printer(character,character_2):
         print("Félicitations à " + character.name + " pour cette victoire dans l'arène du Fight Club!")
         print("*************************************************************************")
         print("*************************************************************************")
-        fights_history_register(character,1, 0,character_2)
+        character.score = 1
+        character_2.score = 0
 
 
     elif  not is_alive(character) and is_alive(character_2) :
@@ -173,7 +180,8 @@ def health_printer(character,character_2):
         print("Félicitations à " + character_2.name + " pour cette victoire dans l'arène du Fight Club!")
         print("*************************************************************************")
         print("*************************************************************************")
-        fights_history_register(character,0,1,character_2)
+        character.score = 0
+        character_2.score = 1
 
     elif not is_alive(character) and  not is_alive(character_2):
         print("\n")
@@ -185,4 +193,5 @@ def health_printer(character,character_2):
         print("Match null")
         print("*************************************************************************")
         print("*************************************************************************")
-        fights_history_register(character,1, 1,character_2)
+        character.score = 1
+        character_2.score = 1
